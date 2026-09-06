@@ -8,13 +8,20 @@ const Bookshelf = () => {
 
     const handleInputChange = (evt) =>{
         setNewBook({...newBook, [evt.target.name]: evt.target.value});
+    };
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        setBooks([...books, newBook]);
+        setNewBook({title: '', author: ''});
+        
     }
 
     return (
         <div className="bookshelfDiv">
             <div className="formDiv">
                 <h3>Add a Book</h3>
-                <form action="">
+                <form onSubmit={handleSubmit} action="">
                     <label htmlFor="title">Title:</label>
                     <input type="text" name="title" id="title" value={newBook.title} onChange={handleInputChange}/>
 
@@ -24,7 +31,12 @@ const Bookshelf = () => {
                     <button type="submit">Add Book</button>
                 </form>
             </div>
-            <div className="bookCardsDiv">{/* Book cards will display here */}</div>
+            {books.map((book, index) => (
+                <div className="bookCardsDiv" key={index}>
+                    <h2>{book.title}</h2>
+                    <h3>{book.author}</h3>
+                </div>
+            ))}
         </div>
     )
 }
