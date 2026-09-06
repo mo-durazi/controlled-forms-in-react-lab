@@ -10,8 +10,6 @@ const Bookshelf = () => {
         setNewBook({...newBook, [evt.target.name]: evt.target.value});
     }
 
-
-
     return (
         <div className="bookshelfDiv">
             <div className="formDiv">
